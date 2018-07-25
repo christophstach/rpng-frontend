@@ -1,0 +1,15 @@
+<div class="item">
+  <div class="work-place">
+    <h3 class="place">{{employer}}</h3>
+    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{location}}</div>
+  </div>
+  <div class="job-meta">
+    <div class="title">{{position}}</div>
+    <div class="time">
+      {{startDate | moment:'MMMM YYYY'}} - {{endDate.getMonth ? (endDate | moment:'MMMM YYYY') : endDate}}
+    </div>
+  </div><!--//job-meta-->
+  <div class="job-desc">
+    <ng-content></ng-content>
+  </div><!--//job-desc-->
+</div><!--//item-->

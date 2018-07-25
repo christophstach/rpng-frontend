@@ -1,0 +1,7 @@
+mutation VerifyEmailMutation {
+  verifyEmail(token: "${token}") {
+    email
+    firstName
+    lastName
+  }
+}

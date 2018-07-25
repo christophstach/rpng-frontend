@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+  .title {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 991px) {
+  .location {
+    position: static;
+  }
+}

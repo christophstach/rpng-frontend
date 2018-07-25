@@ -1,0 +1,10 @@
+query UserListComponentQuery {
+  users {
+    id
+    username
+    email
+    roles
+    firstName
+    lastName
+  }
+}

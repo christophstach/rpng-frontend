@@ -1,0 +1,74 @@
+<header class="header" data-scroll-spy="top">
+  <div class="top-bar container-fluid">
+    <div class="actions">
+      <!--<a class="btn" routerLink="/verify/e88fb45d60ef842a3e3535c8d0236c1d4eb75891e00e6cd9901b1760af1863788bf59a9f34ba3471b0a95236e97f12beddbd0497e10afecfbab2e4ff7b4b164c" title="Verify">
+        <i class="fa fa-key text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+           aria-hidden="true"></i>
+        <i class="fa fa-key text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+           aria-hidden="true"></i>
+        <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">Home</span>
+      </a>-->
+      <a class="btn" routerLink="/users" title="Home">
+        <i class="fa fa-home text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+           aria-hidden="true"></i>
+        <i class="fa fa-home text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+           aria-hidden="true"></i>
+        <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">Home</span>
+      </a>
+      <ng-container *ngIf="isLogin$ | async">
+        <a class="btn" routerLink="/profile" title="Profile">
+          <i class="fa fa-user-circle text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+             aria-hidden="true"></i>
+          <i class="fa fa-user-circle text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+             aria-hidden="true"></i>
+          <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">{{username$ | async}}</span>
+        </a>
+        <a class="btn" (click)="onLogout()" title="Logout">
+          <i class="fa fa-sign-out text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+             aria-hidden="true"></i>
+          <i class="fa fa-sign-out text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+             aria-hidden="true"></i>
+          <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">Logout</span>
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="!(isLogin$ | async)">
+        <a class="btn" routerLink="/register" title="Register">
+          <i class="fa fa-user-plus text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+             aria-hidden="true"></i>
+          <i class="fa fa-user-plus text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+             aria-hidden="true"></i>
+          <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">Register</span>
+        </a>
+        <a class="btn" routerLink="/login" title="Login">
+          <i class="fa fa-sign-in text-center mr-0 d-none d-xs-none d-sm-none d-md-inline d-lg-inline d-xl-inline"
+             aria-hidden="true"></i>
+          <i class="fa fa-sign-in text-center d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none"
+             aria-hidden="true"></i>
+          <span class="d-xs-inline d-sm-inline d-md-none d-lg-none d-xl-none">Login</span>
+        </a>
+      </ng-container>
+    </div><!--//actions-->
+    <app-social-nav></app-social-nav>
+  </div><!--//top-bar-->
+
+  <div class="intro">
+    <div class="container text-center">
+      <h1 class="name">
+
+        <input class="form-control form-control-lg" placeholder="Hit enter to generate random project name...">
+      </h1>
+      <div class="title">
+
+      </div>
+      <div class="desc">
+
+      </div>
+
+    </div><!--//container-->
+  </div><!--//intro-->
+
+  <!--<app-nav></app-nav>-->
+
+</header><!--//header-->
+

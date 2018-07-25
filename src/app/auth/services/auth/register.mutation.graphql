@@ -1,0 +1,17 @@
+mutation RegisterMutation {
+  register(
+    email: "${email}"
+    username: "${username}"
+    password: "${password}"
+    passwordRepeated: "${passwordRepeated}"
+    firstName: "${firstName}"
+    lastName: "${lastName}"
+  ) {
+    id
+    username
+    email
+    roles
+    firstName
+    lastName
+  }
+}

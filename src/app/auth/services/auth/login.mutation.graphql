@@ -1,0 +1,6 @@
+mutation LoginMutation {
+  login(
+    email: "${email}"
+    password: "${password}"
+  )
+}

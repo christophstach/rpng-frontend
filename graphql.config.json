@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "file": "graphql.schema.json",
+    "request": {
+      "url": "https://api-dot-random-project-name-generator.appspot.com/graphql",
+      "method": "POST",
+      "postIntrospectionQuery": true,
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  },
+  "endpoints": [
+    {
+      "name": "Remote (https://api-dot-random-project-name-generator.appspot.com)",
+      "url": "https://api-dot-random-project-name-generator.appspot.com/graphql",
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    },
+    {
+      "name": "Local development (http://localhost:3000/graphql)",
+      "url": "http://localhost:3000/graphql",
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  ]
+}
