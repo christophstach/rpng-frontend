@@ -38,7 +38,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     .valueChanges
     .subscribe(({data, loading}) => {
       this.loading = loading;
-      this.users = data.users;
+      this.users = data.getUsers;
     });
   }
 
