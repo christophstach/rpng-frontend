@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface LoginMutation {
-  login: string | null;
+  login: string | null;  // Login to the application.
 }
 
 
@@ -29,7 +29,7 @@ export interface RegisterMutation_register {
 }
 
 export interface RegisterMutation {
-  register: RegisterMutation_register | null;
+  register: RegisterMutation_register | null;  // Registers a new user to the application.
 }
 
 
@@ -37,17 +37,17 @@ export interface RegisterMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: VerifyEmailMutation
+// GraphQL mutation operation: VerifyMutation
 // ====================================================
 
-export interface VerifyEmailMutation_verifyEmail {
+export interface VerifyMutation_verify {
   email: string;
   firstName: string | null;
   lastName: string | null;
 }
 
-export interface VerifyEmailMutation {
-  verifyEmail: VerifyEmailMutation_verifyEmail | null;
+export interface VerifyMutation {
+  verify: VerifyMutation_verify | null;  // Verifies a user by a  given token.
 }
 
 
@@ -58,7 +58,7 @@ export interface VerifyEmailMutation {
 // GraphQL query operation: UserListComponentQuery
 // ====================================================
 
-export interface UserListComponentQuery_users {
+export interface UserListComponentQuery_getUsers {
   id: string;
   username: string;
   email: string;
@@ -68,7 +68,7 @@ export interface UserListComponentQuery_users {
 }
 
 export interface UserListComponentQuery {
-  users: (UserListComponentQuery_users | null)[] | null;
+  getUsers: (UserListComponentQuery_getUsers | null)[] | null;  // Get a list of all users.  Roles: Admin, Superadmin
 }
 
 /* tslint:disable */
@@ -78,6 +78,7 @@ export interface UserListComponentQuery {
 // START Enums and Input Objects
 //==============================================================
 
+// All available user roles.
 export enum UserRole {
   ADMIN = "ADMIN",
   SUPERADMIN = "SUPERADMIN",

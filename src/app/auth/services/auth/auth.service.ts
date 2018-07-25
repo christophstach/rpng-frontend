@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 import gql from 'graphql-tag';
-import { LoginMutation, RegisterMutation, VerifyEmailMutation } from '../../../schema';
+import { LoginMutation, RegisterMutation, VerifyMutation } from '../../../schema';
 
 @Injectable({
   providedIn: 'root'
@@ -53,10 +53,10 @@ export class AuthService {
   }
 
   verifyEmail(token) {
-    return this.apollo.mutate<VerifyEmailMutation>({
+    return this.apollo.mutate<VerifyMutation>({
       mutation: gql`
-        mutation VerifyEmailMutation {
-          verifyEmail(token: "${token}") {
+        mutation VerifyMutation {
+          verify(token: "${token}") {
             email
             firstName
             lastName

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { delay } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import gql from 'graphql-tag';
 import { UserListComponentQuery } from '../../../schema';
@@ -25,7 +24,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
     this.querySubscription = this.apollo.watchQuery<UserListComponentQuery>({
       query: gql`
         query UserListComponentQuery {
-          users {
+          getUsers {
             id
             username
             email
@@ -37,7 +36,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
       `
     })
     .valueChanges
-    .pipe(delay(1000))
     .subscribe(({data, loading}) => {
       this.loading = loading;
       this.users = data.users;

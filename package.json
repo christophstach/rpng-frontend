@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "PORT=8080 node dist/server.js",
+    "start": "npm run start:ssr",
     "start:dev": "ng serve --aot",
     "start:prod": "ng serve --aot --prod",
     "start:ssr": "node dist/server.js",
@@ -19,9 +19,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "graqphql:introspect": "npx apollo-codegen introspect-schema http://localhost:3000/graphql --output graphql.schema.json",
+    "graqphql:introspect": "npx apollo-codegen introspect-schema https://rpng-backend.herokuapp.com/graphql --output graphql.schema.json",
     "graqphql:generate:types": "npx apollo-codegen generate **/*.graphql --schema graphql.schema.json --target typescript --output src/app/schema.ts",
-    "deploy:gcloud": "npm run build:ssr && gcloud app deploy"
+    "postinstall": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
