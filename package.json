@@ -58,7 +58,6 @@
     "graphql-tag": "^2.9.2",
     "install": "^0.12.1",
     "moment": "^2.22.2",
-    "ngx-toastr": "^8.8.0",
     "rxjs": "^6.0.0",
     "ts-loader": "^4.4.2",
     "zone.js": "^0.8.26"

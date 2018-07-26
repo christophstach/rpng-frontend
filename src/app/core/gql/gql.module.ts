@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { Store } from '@ngxs/store';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
-import { ToastrService } from 'ngx-toastr';
 import { createApollo } from './factories/apollo.factory';
+import { MessageService } from '../utility/services/message.service';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { createApollo } from './factories/apollo.factory';
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,
-      deps: [HttpLink, Store, ToastrService]
+      deps: [HttpLink, Store, MessageService]
     },
   ]
 })
