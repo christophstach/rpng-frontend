@@ -1,11 +1,11 @@
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
-import { LoginRequest, LoginFailure, LoginSuccess, Logout } from '../actions/auth.actions';
+import { LoginFailure, LoginRequest, LoginSuccess, Logout } from '../actions/auth.actions';
 import { AuthService } from '../services/auth/auth.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Navigate } from '@ngxs/router-plugin';
-import { ToastrService } from 'ngx-toastr';
 import { Apollo } from 'apollo-angular';
+import { MessageService } from '../../core/utility/services/message.service';
 
 export interface JwtPayload {
   email: string;
@@ -25,7 +25,7 @@ export class AuthState implements NgxsOnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly jwtHelperService: JwtHelperService,
-    private readonly toastr: ToastrService,
+    private readonly messageService: MessageService,
     private readonly apollo: Apollo
   ) {
   }
@@ -60,20 +60,19 @@ export class AuthState implements NgxsOnInit {
     dispatch(new Navigate(['/login']));
     patchState({jwt: null, jwtPayload: null});
     await this.apollo.getClient().resetStore();
-    this.toastr.success('Logout Successful');
+    this.messageService.success('Logout successful');
   }
 
   @Action(LoginSuccess)
   async loginSuccess({dispatch}: StateContext<AuthStateModel>, action: LoginSuccess) {
     dispatch(new Navigate(['/profile']));
     await this.apollo.getClient().resetStore();
-    this.toastr.success('LoginRequest Successful');
+    this.messageService.success('Login successful');
   }
 
   @Action(LoginFailure)
   async loginFailed({patchState}: StateContext<AuthStateModel>, action: LoginFailure) {
     patchState({jwt: null, jwtPayload: null});
     await this.apollo.getClient().resetStore();
-    this.toastr.error('LoginRequest Failed');
   }
 }

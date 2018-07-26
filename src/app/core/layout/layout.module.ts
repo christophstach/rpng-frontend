@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ToastrModule } from 'ngx-toastr';
 import { BackToTopComponent } from './components/back-to-top/back-to-top.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,11 +12,6 @@ import { PageComponent } from './components/page/page.component';
   imports: [
     BrowserAnimationsModule,
     SharedModule,
-    ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true
-    }),
   ],
   declarations: [
     AppShellComponent,
