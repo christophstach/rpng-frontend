@@ -6,6 +6,7 @@ import { SocialNavComponent } from './components/social-nav/social-nav.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {
+  MzBadgeModule,
   MzButtonModule,
   MzCardModule,
   MzCheckboxModule,
@@ -31,6 +32,7 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
+    MzBadgeModule
   ],
   declarations: [
     MomentPipe,
@@ -52,6 +54,7 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
+    MzBadgeModule
   ]
 })
 export class SharedModule {

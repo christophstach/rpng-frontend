@@ -1,3 +1,52 @@
-<p>
-  profile works!
-</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+  <mz-card>
+    <mz-card-title>
+      Profile
+      <mz-badge
+        caption="Dummy"
+        badgeClass="blue">
+      </mz-badge>
+    </mz-card-title>
+    <mz-card-content>
+      <mz-input-container>
+        <input
+          label="E-Mail"
+          id="email"
+          formControlName="email"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+
+      <mz-input-container>
+        <input
+          label="Username"
+          id="username"
+          formControlName="username"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+
+      <mz-input-container>
+        <input
+          label="First name"
+          id="firstName"
+          formControlName="firstName"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+
+      <mz-input-container>
+        <input
+          label="Last name"
+          id="lastName"
+          formControlName="lastName"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+    </mz-card-content>
+    <mz-card-action>
+      <button [disabled]="!profileForm.valid" style="margin-right: 5px;" mzButton>Save</button>
+      <button mzButton>Change password</button>
+    </mz-card-action>
+  </mz-card>
+</form>
