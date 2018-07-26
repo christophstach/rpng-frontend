@@ -1,13 +1,9 @@
-<app-header id="top"></app-header>
+<app-header></app-header>
 
-<div class="wrapper container">
-  <router-outlet></router-outlet>
-</div>
-
-<footer class="footer text-center">
+<main>
   <div class="container">
-    <small class="copyright">
-      Copyright @ <a href="https://christophstach.me/" target="_blank">Christoph Stach</a>
-    </small>
+    <router-outlet></router-outlet>
   </div>
-</footer>
+</main>
+
+<app-footer></app-footer>

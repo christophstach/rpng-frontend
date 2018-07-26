@@ -1,23 +1,121 @@
-<nav class="page-nav-space-holder d-none d-md-block">
-  <div id="page-nav-wrapper" class="page-nav-wrapper text-center" #pageNavWrapper>
-    <div class="container">
-      <ul id="page-nav" class="nav page-nav list-inline">
-        <li class="nav-item">
-          <a class="nav-link" href="#top" appSmoothScroll="#" data-scroll-spy-link>Top</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills" appSmoothScroll="#skills" data-scroll-spy-link>Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#work-experience" appSmoothScroll="#work-experience" data-scroll-spy-link>Work Experience</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#education" appSmoothScroll="#education" data-scroll-spy-link>Education</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact-me" appSmoothScroll="#contact-me" data-scroll-spy-link>Contact Me</a>
-        </li>
-      </ul><!--//page-nav-->
-    </div>
-  </div><!--//page-nav-wrapper-->
-</nav>
+<mz-navbar>
+  <div class="container">
+    <a routerLink="/" class="brand-logo">RPNG</a>
+
+    <mz-navbar-item-container [align]="'left'" *ngIf="smallResolution$ | async">
+      <mz-navbar-item>
+        <a id="btn-open-sidenav">
+          <i align="left" icon="menu" mz-icon-mdi></i>
+        </a>
+      </mz-navbar-item>
+    </mz-navbar-item-container>
+
+    <mz-navbar-item-container [align]="'right'" *ngIf="!(smallResolution$ | async)">
+      <mz-navbar-item [active]="rlaHome.isActive">
+        <a routerLink="/" routerLinkActive #rlaHome="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
+          <i align="left" icon="home" mz-icon></i>
+          Home
+        </a>
+      </mz-navbar-item>
+
+      <ng-container *ngIf="isLogin$ | async">
+        <mz-navbar-item [active]="rlaProfile.isActive">
+          <a routerLink="/profile" routerLinkActive #rlaProfile="routerLinkActive">
+            <i align="left" icon="account_circle" mz-icon></i>
+            Profile
+          </a>
+        </mz-navbar-item>
+
+        <mz-navbar-item [active]="rlaUsers.isActive">
+          <a routerLink="/users" routerLinkActive #rlaUsers="routerLinkActive">
+            <i align="left" icon="account-group" mz-icon-mdi></i>
+            Users
+          </a>
+        </mz-navbar-item>
+
+        <mz-navbar-item>
+          <a (click)="onLogout()">
+            <i align="left" icon="logout" mz-icon-mdi></i>
+            Logout
+          </a>
+        </mz-navbar-item>
+      </ng-container>
+
+      <ng-container *ngIf="!(isLogin$ | async)">
+        <mz-navbar-item [active]="rlaRegister.isActive">
+          <a routerLink="/register" routerLinkActive #rlaRegister="routerLinkActive">
+            <i align="left" icon="account-plus" mz-icon-mdi></i>
+            Register
+          </a>
+        </mz-navbar-item>
+        <mz-navbar-item [active]="rlaLogin.isActive">
+          <a routerLink="/login" routerLinkActive #rlaLogin="routerLinkActive">
+            <i align="left" icon="login" mz-icon-mdi></i>
+            Login
+          </a>
+        </mz-navbar-item>
+      </ng-container>
+
+
+    </mz-navbar-item-container>
+  </div>
+</mz-navbar>
+
+
+<mz-sidenav
+  *ngIf="smallResolution$ | async"
+  [id]="'sidenav'"
+  collapseButtonId="btn-open-sidenav">
+
+  <!--<mz-sidenav-header>
+    <a routerLink="/">
+      <h5 class="center-align">RPNG</h5>
+    </a>
+  </mz-sidenav-header>-->
+
+  <mz-sidenav-link [active]="rlasHome.isActive">
+    <a routerLink="/" routerLinkActive #rlasHome="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
+      <i align="left" icon="home" mz-icon></i>
+      Home
+    </a>
+  </mz-sidenav-link>
+
+  <ng-container *ngIf="isLogin$ | async">
+    <mz-sidenav-link [active]="rlaProfile.isActive">
+      <a routerLink="/profile" routerLinkActive #rlaProfile="routerLinkActive">
+        <i align="left" icon="account_circle" mz-icon></i>
+        Profile
+      </a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link [active]="rlaUsers.isActive">
+      <a routerLink="/users" routerLinkActive #rlaUsers="routerLinkActive">
+        <i align="left" icon="account-group" mz-icon-mdi></i>
+        Users
+      </a>
+    </mz-sidenav-link>
+
+    <mz-sidenav-link>
+      <a (click)="onLogout()">
+        <i align="left" icon="logout" mz-icon-mdi></i>
+        Logout
+      </a>
+    </mz-sidenav-link>
+  </ng-container>
+
+  <ng-container *ngIf="!(isLogin$ | async)">
+    <mz-sidenav-link [active]="rlaRegister.isActive">
+      <a routerLink="/register" routerLinkActive #rlaRegister="routerLinkActive">
+        <i align="left" icon="account-plus" mz-icon-mdi></i>
+        Register
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-link [active]="rlaLogin.isActive">
+      <a routerLink="/login" routerLinkActive #rlaLogin="routerLinkActive">
+        <i align="left" icon="login" mz-icon-mdi></i>
+        Login
+      </a>
+    </mz-sidenav-link>
+  </ng-container>
+</mz-sidenav>
+

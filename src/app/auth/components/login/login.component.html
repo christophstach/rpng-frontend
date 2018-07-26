@@ -1,26 +1,41 @@
-<section class="section">
-  <h2 class="section-title">Login / Sign In</h2>
-  <div class="row">
-    <div class="offset-lg-3 col-lg-6">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+  <mz-card>
+    <mz-card-title>Login</mz-card-title>
+    <mz-card-content>
+      <div class="section">
+        <mz-input-container>
+          <input
+            label="E-Mail"
+            id="email"
+            type="email"
+            [validate]="true"
+            formControlName="email"
+            mzInput>
+        </mz-input-container>
 
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="email">E-Mail</label>
-          <input id="email" type="email" class="form-control" placeholder="E-Mail" formControlName="email">
-        </div>
+        <mz-input-container>
+          <input
+            label="Password"
+            id="password"
+            type="password"
+            [validate]="true"
+            formControlName="password"
+            mzInput>
+        </mz-input-container>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" class="form-control" placeholder="Password" formControlName="password">
-        </div>
+        <mz-checkbox-container>
+          <input
+            label="Remember me"
+            id="remember-me"
+            type="checkbox"
+            formControlName="rememberMe"
+            mzCheckbox>
+        </mz-checkbox-container>
+      </div>
 
-        <div class="form-check">
-          <input id="remember-me" type="checkbox" class="form-check-input" formControlName="rememberMe">
-          <label for="remember-me" class="form-check-label">Remember me</label>
-        </div>
-
-        <button class="btn btn-primary mt-2" [disabled]="!loginForm.valid">Login</button>
-      </form>
-    </div>
-  </div>
-</section>
+    </mz-card-content>
+    <mz-card-action>
+      <button [disabled]="!loginForm.valid" mzButton>Login</button>
+    </mz-card-action>
+  </mz-card>
+</form>

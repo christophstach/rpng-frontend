@@ -11,14 +11,5 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  isLogin$: Observable<boolean>;
-  @Select(state => (state.auth as AuthStateModel).jwtPayload.username) username$: Observable<string>;
 
-  constructor(private readonly store: Store, private readonly jwtHelperService: JwtHelperService) {
-    this.isLogin$ = this.store.select(state => !this.jwtHelperService.isTokenExpired((state.auth as AuthStateModel).jwt));
-  }
-
-  onLogout() {
-    this.store.dispatch(new Logout());
-  }
 }
