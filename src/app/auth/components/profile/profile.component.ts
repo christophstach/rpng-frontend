@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +10,6 @@ export class ProfileComponent {
   profileForm: FormGroup;
 
   constructor(
-    private readonly authService: AuthService,
     private readonly fb: FormBuilder
   ) {
     this.createForm();
@@ -34,11 +32,7 @@ export class ProfileComponent {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.authService.register(this.profileForm.getRawValue())
-        .subscribe((response) => {
-          alert('Successfully registered');
-        });
+
     }
   }
-
 }

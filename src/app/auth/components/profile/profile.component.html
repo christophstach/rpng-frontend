@@ -44,5 +44,9 @@
           mzInput>
       </mz-input-container>
     </mz-card-content>
+    <mz-card-action>
+      <button [disabled]="!profileForm.valid" style="margin-right: 5px;" mzButton>Save</button>
+      <button mzButton>Change password</button>
+    </mz-card-action>
   </mz-card>
 </form>
