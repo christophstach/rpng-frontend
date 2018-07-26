@@ -31,7 +31,6 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
-    MzMediaModule
   ],
   declarations: [
     MomentPipe,
@@ -53,7 +52,6 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
-    MzMediaModule
   ]
 })
 export class SharedModule {
