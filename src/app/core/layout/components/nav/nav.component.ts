@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { AuthStateModel } from '../../../../auth/states/auth.state';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Logout } from '../../../../auth/actions/auth.actions';
-import { MzMediaService } from 'ngx-materialize';
+import { MediaService } from '../../../utility/services/media.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class NavComponent {
   constructor(
     private readonly store: Store,
     private readonly jwtHelperService: JwtHelperService,
-    private readonly mediaService: MzMediaService
+    private readonly mediaService: MediaService,
   ) {
     this.isLogin$ = this.store.select(state => !this.jwtHelperService.isTokenExpired((state.auth as AuthStateModel).jwt));
     this.smallResolution$ = this.mediaService.isActive('lt-l');
