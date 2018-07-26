@@ -1,43 +1,71 @@
-<section class="section">
-  <h2 class="section-title">Register / Sign Up</h2>
-  <div class="row">
-    <div class="offset-lg-3 col-lg-6">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+  <mz-card>
+    <mz-card-title>Register</mz-card-title>
+    <mz-card-content>
+      <mz-input-container>
+        <input
+          label="E-Mail"
+          id="email"
+          type="email"
+          formControlName="email"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
 
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="email">E-Mail</label>
-          <input id="email" type="email" class="form-control" placeholder="E-Mail" formControlName="email">
-        </div>
 
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input id="username" class="form-control" placeholder="Username" formControlName="username">
-        </div>
+      <mz-input-container>
+        <input
+          label="Username"
+          id="username"
+          formControlName="username"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" class="form-control" placeholder="Password" formControlName="password"
-                 autocomplete="new-password">
-        </div>
 
-        <div class="form-group">
-          <label for="password">Repeat Password</label>
-          <input id="passwordRepeated" type="password" class="form-control" placeholder="Repeat Password" formControlName="passwordRepeated"
-                 autocomplete="new-password">
-        </div>
+      <mz-input-container>
+        <input
+          label="Password"
+          id="password"
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
 
-        <div class="form-group">
-          <label for="firstName">First name</label>
-          <input id="firstName" class="form-control" placeholder="First name" formControlName="firstName">
-        </div>
 
-        <div class="form-group">
-          <label for="lastName">Last name</label>
-          <input id="lastName" class="form-control" placeholder="Last Name" formControlName="lastName">
-        </div>
+      <mz-input-container>
+        <input
+          label="Repeat password"
+          id="passwordRepeated"
+          type="password"
+          formControlName="passwordRepeated"
+          autocomplete="new-password"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
 
-        <button class="btn btn-primary mt-2" [disabled]="!registerForm.valid">Register</button>
-      </form>
-    </div>
-  </div>
-</section>
+      <mz-input-container>
+        <input
+          label="First name"
+          id="firstName"
+          formControlName="firstName"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+
+      <mz-input-container>
+        <input
+          label="Last name"
+          id="lastName"
+          formControlName="lastName"
+          [validate]="true"
+          mzInput>
+      </mz-input-container>
+    </mz-card-content>
+    <mz-card-action>
+      <button [disabled]="!registerForm.valid" mzButton>Register</button>
+    </mz-card-action>
+  </mz-card>
+</form>

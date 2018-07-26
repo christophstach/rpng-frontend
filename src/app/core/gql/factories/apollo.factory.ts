@@ -34,16 +34,13 @@ export function createApollo(httpLink: HttpLink, store: Store, messageService: M
             messageService.error(e.message);
           } else {
             const {message, error, statusCode} = e.message as any;
-            messageService.error(message, error);
+            messageService.error(message);
           }
         });
       }
 
       if (networkError) {
-        messageService.error(
-          networkError.message,
-          'Network error'
-        );
+        messageService.error(networkError.message);
       }
     }),
     // Http Link

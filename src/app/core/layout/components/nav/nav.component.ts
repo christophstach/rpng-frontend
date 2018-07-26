@@ -1,5 +1,10 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { ScrollSpyService } from '../../services/scroll-spy.service';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { AuthStateModel } from '../../../../auth/states/auth.state';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Logout } from '../../../../auth/actions/auth.actions';
+import { MzMediaService } from 'ngx-materialize';
 
 
 @Component({
@@ -7,24 +12,21 @@ import { ScrollSpyService } from '../../services/scroll-spy.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
-  @ViewChild('pageNavWrapper') pageNavWrapper: ElementRef;
+export class NavComponent {
+  isLogin$: Observable<boolean>;
+  smallResolution$: Observable<boolean>;
+  @Select(state => (state.auth as AuthStateModel).jwtPayload.username) username$: Observable<string>;
 
-  constructor(private renderer: Renderer2, private scrollSpyService: ScrollSpyService) {
+  constructor(
+    private readonly store: Store,
+    private readonly jwtHelperService: JwtHelperService,
+    private readonly mediaService: MzMediaService
+  ) {
+    this.isLogin$ = this.store.select(state => !this.jwtHelperService.isTokenExpired((state.auth as AuthStateModel).jwt));
+    this.smallResolution$ = this.mediaService.isActive('lt-l');
   }
 
-  ngOnInit() {
-    this.scrollSpyService.getWindowScroll().subscribe(() => {
-      this.renderer.removeClass(this.pageNavWrapper.nativeElement, 'fixed');
-
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const topDistance = this.pageNavWrapper.nativeElement.getBoundingClientRect().top + scrollTop;
-
-      if (topDistance > scrollTop) {
-        this.renderer.removeClass(this.pageNavWrapper.nativeElement, 'fixed');
-      } else {
-        this.renderer.addClass(this.pageNavWrapper.nativeElement, 'fixed');
-      }
-    });
+  onLogout() {
+    this.store.dispatch(new Logout());
   }
 }

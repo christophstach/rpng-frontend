@@ -1,14 +1,9 @@
-@import 'variables';
-@import '~bootstrap/scss/bootstrap';
-
 body {
-  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.will-animate {
-  visibility: hidden;
+main {
 }
 
-section:last-child {
-  margin-bottom: 45px !important;
-}

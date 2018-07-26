@@ -1,62 +1,26 @@
 import { Injectable } from '@angular/core';
+import { MzToastService } from 'ngx-materialize';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  constructor() {
-
+  constructor(private toastService: MzToastService) {
   }
 
-  info(message: string, title?: string) {
-    if (title) {
-      alert(`
-${title}
-#####################################
-
-${message}
-    `);
-    } else {
-      alert(message);
-    }
+  info(message: string) {
+    this.toastService.show(message, 4000);
   }
 
-  success(message: string, title?: string) {
-    if (title) {
-      alert(`
-${title}
-#####################################
-
-${message}
-    `);
-    } else {
-      alert(message);
-    }
+  success(message: string) {
+    this.toastService.show(message, 4000, 'green');
   }
 
-  warning(message: string, title?: string) {
-    if (title) {
-      alert(`
-${title}
-#####################################
-
-${message}
-    `);
-    } else {
-      alert(message);
-    }
+  warning(message: string) {
+    this.toastService.show(message, 4000, 'yellow');
   }
 
-  error(message: string, title?: string) {
-    if (title) {
-      alert(`
-${title}
-#####################################
-
-${message}
-    `);
-    } else {
-      alert(message);
-    }
+  error(message: string) {
+    this.toastService.show(message, 4000, 'red');
   }
 }
