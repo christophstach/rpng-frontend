@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
+import { MzBadgeModule, MzCardModule, MzInputModule } from 'ngx-materialize';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -8,9 +10,15 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      imports: [
+        ReactiveFormsModule,
+        MzInputModule,
+        MzBadgeModule,
+        MzCardModule,
+      ],
+      declarations: [ProfileComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

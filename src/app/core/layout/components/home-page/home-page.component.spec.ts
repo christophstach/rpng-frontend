@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MzCardModule } from 'ngx-materialize';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -8,9 +11,16 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
+        MzCardModule
+      ],
+      declarations: [
+        HomePageComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
