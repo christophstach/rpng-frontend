@@ -9,8 +9,6 @@ import { environment } from '../../../../environments/environment';
 import { MessageService } from '../../utility/services/message.service';
 
 export function createApollo(httpLink: HttpLink, store: Store, messageService: MessageService) {
-
-
   const link = ApolloLink.from([
     // Auth Link
     new ApolloLink((operation, forward) => {

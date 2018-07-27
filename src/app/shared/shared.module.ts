@@ -12,8 +12,9 @@ import {
   MzCheckboxModule,
   MzIconMdiModule,
   MzIconModule,
-  MzInputModule, MzMediaModule,
-  MzNavbarModule, MzSidenavModule,
+  MzInputModule,
+  MzNavbarModule,
+  MzSidenavModule,
   MzToastModule
 } from 'ngx-materialize';
 
@@ -21,7 +22,6 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,
     RouterModule,
     MzNavbarModule,
     MzInputModule,
