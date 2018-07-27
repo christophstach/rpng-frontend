@@ -1,11 +1,17 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
 import { MessageService } from './message.service';
+import { MzToastModule } from 'ngx-materialize';
 
 describe('MessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MessageService]
+      imports: [
+        MzToastModule
+      ],
+      providers: [
+        MessageService
+      ]
     });
   });
 

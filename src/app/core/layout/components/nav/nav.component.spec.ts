@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
+import { MzNavbarModule, MzSidenavModule } from 'ngx-materialize';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgxsModule } from '@ngxs/store';
+import { JwtModule } from '@auth0/angular-jwt';
+import { getToken } from '../../../utility/utility.module';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -8,9 +13,22 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      imports: [
+        RouterTestingModule,
+        NgxsModule.forRoot([]),
+        MzNavbarModule,
+        MzSidenavModule,
+        JwtModule.forRoot({
+          config: {
+            tokenGetter: getToken
+          }
+        }),
+      ],
+      declarations: [
+        NavComponent,
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

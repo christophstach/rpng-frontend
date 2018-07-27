@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VerifyEmailComponent } from './verify-email.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { GqlModule } from '../../../core/gql/gql.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxsModule } from '@ngxs/store';
+import { MzToastModule } from 'ngx-materialize';
 
 describe('VerifyEmailComponent', () => {
   let component: VerifyEmailComponent;
@@ -8,9 +13,18 @@ describe('VerifyEmailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerifyEmailComponent ]
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        GqlModule,
+        NgxsModule.forRoot([]),
+        MzToastModule,
+      ],
+      declarations: [
+        VerifyEmailComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
