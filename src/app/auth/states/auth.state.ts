@@ -1,5 +1,13 @@
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
-import { LoginFailure, LoginRequest, LoginSuccess, Logout } from '../actions/auth.actions';
+import {
+  LoginFailure,
+  LoginRequest,
+  LoginSuccess,
+  Logout,
+  RegisterFailure,
+  RegisterRequest,
+  RegisterSuccess
+} from '../actions/auth.actions';
 import { AuthService } from '../services/auth/auth.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -14,12 +22,20 @@ export interface JwtPayload {
 }
 
 export interface AuthStateModel {
+  loginLoading: boolean;
+  registerLoading: boolean;
   jwt: string;
   jwtPayload: JwtPayload;
 }
 
 @State<AuthStateModel>({
-  name: 'auth'
+  name: 'auth',
+  defaults: {
+    loginLoading: false,
+    registerLoading: false,
+    jwt: null,
+    jwtPayload: null
+  }
 })
 export class AuthState implements NgxsOnInit {
   constructor(
@@ -42,12 +58,15 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Action(LoginRequest)
-  login({patchState, dispatch}: StateContext<AuthStateModel>, action: LoginRequest) {
-    return this.authService.login({email: action.email, password: action.password}).pipe(
+  loginRequest({patchState, dispatch}: StateContext<AuthStateModel>, action: LoginRequest) {
+    const {email, password} = action;
+    patchState({loginLoading: true});
+
+    return this.authService.login({email, password}).pipe(
       tap((token) => {
         patchState({
           jwt: token,
-          jwtPayload: this.jwtHelperService.decodeToken(token)
+          jwtPayload: this.jwtHelperService.decodeToken(token),
         });
       }),
       map(() => dispatch(new LoginSuccess())),
@@ -55,24 +74,51 @@ export class AuthState implements NgxsOnInit {
     );
   }
 
-  @Action(Logout)
-  async logout({patchState, dispatch}: StateContext<AuthStateModel>) {
-    dispatch(new Navigate(['/login']));
-    patchState({jwt: null, jwtPayload: null});
-    await this.apollo.getClient().resetStore();
-    this.messageService.success('Logout successful');
-  }
-
   @Action(LoginSuccess)
-  async loginSuccess({dispatch}: StateContext<AuthStateModel>, action: LoginSuccess) {
+  async loginSuccess({dispatch, patchState}: StateContext<AuthStateModel>, action: LoginSuccess) {
     dispatch(new Navigate(['/profile']));
     await this.apollo.getClient().resetStore();
+    patchState({loginLoading: false});
+
     this.messageService.success('Login successful');
   }
 
   @Action(LoginFailure)
   async loginFailed({patchState}: StateContext<AuthStateModel>, action: LoginFailure) {
-    patchState({jwt: null, jwtPayload: null});
     await this.apollo.getClient().resetStore();
+    patchState({loginLoading: false});
+  }
+
+  @Action(RegisterRequest)
+  registerRequest({patchState, dispatch}: StateContext<AuthStateModel>, action: RegisterRequest) {
+    const {email, username, password, passwordRepeated, firstName, lastName} = action;
+    patchState({registerLoading: true});
+
+    return this.authService.register({email, username, password, passwordRepeated, firstName, lastName}).pipe(
+      map(() => dispatch(new RegisterSuccess())),
+      catchError((error) => dispatch(new RegisterFailure(error)))
+    );
+  }
+
+  @Action(RegisterSuccess)
+  async registerSuccess({dispatch, patchState}: StateContext<AuthStateModel>, action: RegisterSuccess) {
+    dispatch(new Navigate(['/login']));
+    patchState({registerLoading: false});
+
+    this.messageService.success('Registration successful');
+  }
+
+  @Action(RegisterFailure)
+  async registerFailed({patchState}: StateContext<AuthStateModel>, action: RegisterFailure) {
+    patchState({registerLoading: false});
+  }
+
+  @Action(Logout)
+  async logout({patchState, dispatch}: StateContext<AuthStateModel>) {
+    dispatch(new Navigate(['/login']));
+    await this.apollo.getClient().resetStore();
+    patchState({jwt: null, jwtPayload: null});
+
+    this.messageService.success('Logout successful');
   }
 }

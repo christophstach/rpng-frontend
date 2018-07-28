@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { Subscription } from 'rxjs';
-import gql from 'graphql-tag';
-import { UserListComponentQuery } from '../../../schema';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GetUsersQuery_getUsers } from '../../../../schema-types';
+import { Store } from '@ngxs/store';
+import { GetUsersRequest } from '../../actions/users.actions';
 
 
 @Component({
@@ -10,39 +10,16 @@ import { UserListComponentQuery } from '../../../schema';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit, OnDestroy {
-  private querySubscription: Subscription;
+export class UsersListComponent implements OnInit {
+  users$: Observable<GetUsersQuery_getUsers[]>;
+  loading$: Observable<boolean>;
 
-  users: any[];
-  loading: boolean;
-
-  constructor(private readonly apollo: Apollo) {
+  constructor(private readonly store: Store) {
+    this.loading$ = this.store.select(state => state.users.getUsersLoading);
+    this.users$ = this.store.select(state => state.users.getUsers);
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.querySubscription = this.apollo.watchQuery<UserListComponentQuery>({
-      query: gql`
-        query UserListComponentQuery {
-          getUsers {
-            id
-            username
-            email
-            roles
-            firstName
-            lastName
-          }
-        }
-      `
-    })
-    .valueChanges
-    .subscribe(({data, loading}) => {
-      this.loading = loading;
-      this.users = data.getUsers;
-    });
-  }
-
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    this.store.dispatch(new GetUsersRequest());
   }
 }

@@ -13,8 +13,8 @@ import {
   MzIconMdiModule,
   MzIconModule,
   MzInputModule,
-  MzNavbarModule,
-  MzSidenavModule,
+  MzNavbarModule, MzProgressModule,
+  MzSidenavModule, MzSpinnerModule,
   MzToastModule
 } from 'ngx-materialize';
 
@@ -32,7 +32,9 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
-    MzBadgeModule
+    MzBadgeModule,
+    MzProgressModule,
+    MzSpinnerModule
   ],
   declarations: [
     MomentPipe,
@@ -54,7 +56,9 @@ import {
     MzIconModule,
     MzIconMdiModule,
     MzSidenavModule,
-    MzBadgeModule
+    MzBadgeModule,
+    MzProgressModule,
+    MzSpinnerModule
   ]
 })
 export class SharedModule {

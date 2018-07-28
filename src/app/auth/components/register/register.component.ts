@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { RegisterRequest } from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -9,12 +12,15 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  loading$: Observable<boolean>;
 
   constructor(
     private readonly authService: AuthService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly store: Store,
   ) {
     this.createForm();
+    this.loading$ = this.store.select(state => state.auth.registerLoading);
   }
 
   createForm() {
@@ -30,10 +36,9 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.getRawValue())
-        .subscribe((response) => {
-          alert('Successfully registered');
-        });
+      const {email, username, password, passwordRepeated, firstName, lastName} = this.registerForm.getRawValue();
+
+      this.store.dispatch(new RegisterRequest(email, username, password, passwordRepeated, firstName, lastName));
     }
   }
 }

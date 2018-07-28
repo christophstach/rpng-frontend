@@ -35,7 +35,14 @@
 
     </mz-card-content>
     <mz-card-action>
-      <button [disabled]="!loginForm.valid" mzButton>Login</button>
+      <ng-container *ngIf="!(loading$ | async)">
+        <button [disabled]="!loginForm.valid" mzButton>Login</button>
+      </ng-container>
+      <ng-container *ngIf="loading$ | async">
+        <button [disabled]="true" mzButton>
+          <i class="fas fa-spinner fa-spin"></i>
+        </button>
+      </ng-container>
     </mz-card-action>
   </mz-card>
 </form>
