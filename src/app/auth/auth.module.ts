@@ -12,9 +12,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
   imports: [
     SharedModule,
     AuthRoutingModule,
-    NgxsModule.forFeature([
-      AuthState
-    ])
+    NgxsModule.forFeature([AuthState])
   ],
   declarations: [LoginComponent, RegisterComponent, ProfileComponent, VerifyEmailComponent]
 })

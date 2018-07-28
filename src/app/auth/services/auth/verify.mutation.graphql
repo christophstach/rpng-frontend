@@ -1,7 +1,0 @@
-mutation VerifyMutation {
-  verify(token: "${token}") {
-    email
-    firstName
-    lastName
-  }
-}

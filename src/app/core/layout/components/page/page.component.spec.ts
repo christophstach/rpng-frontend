@@ -5,7 +5,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FooterComponent } from '../footer/footer.component';
 import { NavComponent } from '../nav/nav.component';
-import { MzCardModule, MzNavbarModule, MzSidenavModule } from 'ngx-materialize';
+import { MzCardModule, MzNavbarModule, MzProgressModule, MzSidenavModule } from 'ngx-materialize';
 import { NgxsModule } from '@ngxs/store';
 import { JwtModule } from '@auth0/angular-jwt';
 import { getToken } from '../../../utility/utility.module';
@@ -22,6 +22,7 @@ describe('PageComponent', () => {
         MzCardModule,
         MzSidenavModule,
         MzNavbarModule,
+        MzProgressModule,
         JwtModule.forRoot({
           config: {
             tokenGetter: getToken
