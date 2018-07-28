@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs';
+import { UserList } from '../../../../schema-types';
 import gql from 'graphql-tag';
-import { UserListComponentQuery } from '../../../schema';
 
 
 @Component({
@@ -21,9 +21,9 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loading = true;
-    this.querySubscription = this.apollo.watchQuery<UserListComponentQuery>({
+    this.querySubscription = this.apollo.watchQuery<UserList>({
       query: gql`
-        query UserListComponentQuery {
+        query UserList {
           getUsers {
             id
             username

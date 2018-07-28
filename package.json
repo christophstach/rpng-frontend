@@ -19,8 +19,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "graqphql:introspect": "npx apollo-codegen introspect-schema http://localhost:3000/graphql --output graphql.schema.json",
-    "graqphql:generate:types": "npx apollo-codegen generate **/*.graphql --schema graphql.schema.json --target typescript --output src/app/schema.ts",
+    "graqphql:introspect": "npx apollo schema:download --endpoint=http://localhost:3000/graphql",
+    "graqphql:generate:types": "npx apollo codegen:generate --queries=./src/**/*.ts --schema=./schema.json --target=typescript --outputFlat=./src/schema-types.ts",
     "postinstall": "npm run build:ssr"
   },
   "private": true,

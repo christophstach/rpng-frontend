@@ -4,11 +4,14 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: LoginMutation
+// GraphQL mutation operation: Login
 // ====================================================
 
-export interface LoginMutation {
-  login: string | null;  // Login to the application.
+export interface Login {
+  /**
+   * Login to the application.
+   */
+  login: string | null;
 }
 
 
@@ -16,10 +19,10 @@ export interface LoginMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: RegisterMutation
+// GraphQL mutation operation: Register
 // ====================================================
 
-export interface RegisterMutation_register {
+export interface Register_register {
   id: string;
   username: string;
   email: string;
@@ -28,8 +31,11 @@ export interface RegisterMutation_register {
   lastName: string | null;
 }
 
-export interface RegisterMutation {
-  register: RegisterMutation_register | null;  // Registers a new user to the application.
+export interface Register {
+  /**
+   * Registers a new user to the application.
+   */
+  register: Register_register | null;
 }
 
 
@@ -37,17 +43,20 @@ export interface RegisterMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: VerifyMutation
+// GraphQL mutation operation: Verify
 // ====================================================
 
-export interface VerifyMutation_verify {
+export interface Verify_verify {
   email: string;
   firstName: string | null;
   lastName: string | null;
 }
 
-export interface VerifyMutation {
-  verify: VerifyMutation_verify | null;  // Verifies a user by a  given token.
+export interface Verify {
+  /**
+   * Verifies a user by a  given token.
+   */
+  verify: Verify_verify | null;
 }
 
 
@@ -55,10 +64,10 @@ export interface VerifyMutation {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserListComponentQuery
+// GraphQL query operation: UserList
 // ====================================================
 
-export interface UserListComponentQuery_getUsers {
+export interface UserList_getUsers {
   id: string;
   username: string;
   email: string;
@@ -67,8 +76,13 @@ export interface UserListComponentQuery_getUsers {
   lastName: string | null;
 }
 
-export interface UserListComponentQuery {
-  getUsers: (UserListComponentQuery_getUsers | null)[] | null;  // Get a list of all users.  Roles: Admin, Superadmin
+export interface UserList {
+  /**
+   * Get a list of all users.
+   * 
+   * Roles: Admin, Superadmin
+   */
+  getUsers: (UserList_getUsers | null)[] | null;
 }
 
 
@@ -76,10 +90,10 @@ export interface UserListComponentQuery {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getUsersQuery
+// GraphQL query operation: GetUsersQuery
 // ====================================================
 
-export interface getUsersQuery_getUsers {
+export interface GetUsersQuery_getUsers {
   id: string;
   email: string;
   username: string;
@@ -88,8 +102,13 @@ export interface getUsersQuery_getUsers {
   lastName: string | null;
 }
 
-export interface getUsersQuery {
-  getUsers: (getUsersQuery_getUsers | null)[] | null;  // Get a list of all users.  Roles: Admin, Superadmin
+export interface GetUsersQuery {
+  /**
+   * Get a list of all users.
+   * 
+   * Roles: Admin, Superadmin
+   */
+  getUsers: (GetUsersQuery_getUsers | null)[] | null;
 }
 
 /* tslint:disable */
@@ -99,7 +118,9 @@ export interface getUsersQuery {
 // START Enums and Input Objects
 //==============================================================
 
-// All available user roles.
+/**
+ * All available user roles.
+ */
 export enum UserRole {
   ADMIN = "ADMIN",
   SUPERADMIN = "SUPERADMIN",
