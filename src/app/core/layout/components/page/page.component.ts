@@ -13,7 +13,8 @@ export class PageComponent {
   constructor(private readonly store: Store) {
     this.loading$ = merge(
       this.store.select(state => state.auth.loginLoading),
-      this.store.select(state => state.auth.registerLoading)
+      this.store.select(state => state.auth.registerLoading),
+      this.store.select(state => state.users.getUsersLoading)
     );
   }
 }

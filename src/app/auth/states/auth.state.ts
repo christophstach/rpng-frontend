@@ -74,6 +74,21 @@ export class AuthState implements NgxsOnInit {
     );
   }
 
+  @Action(LoginSuccess)
+  async loginSuccess({dispatch, patchState}: StateContext<AuthStateModel>, action: LoginSuccess) {
+    dispatch(new Navigate(['/profile']));
+    await this.apollo.getClient().resetStore();
+    patchState({loginLoading: false});
+
+    this.messageService.success('Login successful');
+  }
+
+  @Action(LoginFailure)
+  async loginFailed({patchState}: StateContext<AuthStateModel>, action: LoginFailure) {
+    await this.apollo.getClient().resetStore();
+    patchState({loginLoading: false});
+  }
+
   @Action(RegisterRequest)
   registerRequest({patchState, dispatch}: StateContext<AuthStateModel>, action: RegisterRequest) {
     const {email, username, password, passwordRepeated, firstName, lastName} = action;
@@ -85,27 +100,12 @@ export class AuthState implements NgxsOnInit {
     );
   }
 
-  @Action(LoginSuccess)
-  async loginSuccess({dispatch, patchState}: StateContext<AuthStateModel>, action: LoginSuccess) {
-    dispatch(new Navigate(['/profile']));
-    await this.apollo.getClient().resetStore();
-    patchState({loginLoading: false});
-
-    this.messageService.success('Login successful');
-  }
-
   @Action(RegisterSuccess)
   async registerSuccess({dispatch, patchState}: StateContext<AuthStateModel>, action: RegisterSuccess) {
     dispatch(new Navigate(['/login']));
     patchState({registerLoading: false});
 
     this.messageService.success('Registration successful');
-  }
-
-  @Action(LoginFailure)
-  async loginFailed({patchState}: StateContext<AuthStateModel>, action: LoginFailure) {
-    await this.apollo.getClient().resetStore();
-    patchState({loginLoading: false});
   }
 
   @Action(RegisterFailure)
