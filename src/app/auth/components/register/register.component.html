@@ -12,7 +12,6 @@
           mzInput>
       </mz-input-container>
 
-
       <mz-input-container>
         <input
           label="Username"
@@ -21,7 +20,6 @@
           [validate]="true"
           mzInput>
       </mz-input-container>
-
 
       <mz-input-container>
         <input
@@ -33,7 +31,6 @@
           [validate]="true"
           mzInput>
       </mz-input-container>
-
 
       <mz-input-container>
         <input
@@ -65,7 +62,14 @@
       </mz-input-container>
     </mz-card-content>
     <mz-card-action>
-      <button [disabled]="!registerForm.valid" mzButton>Register</button>
+      <ng-container *ngIf="!(loading$ | async)">
+        <button [disabled]="!registerForm.valid" mzButton>Register</button>
+      </ng-container>
+      <ng-container *ngIf="loading$ | async">
+        <button [disabled]="true" mzButton>
+          <i class="fas fa-spinner fa-spin"></i>
+        </button>
+      </ng-container>
     </mz-card-action>
   </mz-card>
 </form>
