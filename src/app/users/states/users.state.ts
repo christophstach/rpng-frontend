@@ -1,8 +1,8 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Select, State, StateContext } from '@ngxs/store';
 import { GetUsersFailure, GetUsersRequest, GetUsersSuccess } from '../actions/users.actions';
 import { GetUsersQuery_getUsers } from '../../../schema-types';
 import { UsersService } from '../services/users/users.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, delay, map, tap } from 'rxjs/operators';
 
 export interface UsersStateModel {
   getUsersLoading: boolean;
@@ -17,6 +17,16 @@ export interface UsersStateModel {
   }
 })
 export class UsersState {
+  @Select()
+  static users(state: { users: UsersStateModel }) {
+    return state.users.getUsers;
+  }
+
+  @Select()
+  static usersLoading(state: { users: UsersStateModel }) {
+    return state.users.getUsersLoading;
+  }
+
   constructor(
     private readonly usersService: UsersService
   ) {
@@ -27,6 +37,7 @@ export class UsersState {
     patchState({getUsersLoading: true});
 
     return this.usersService.getUsers().pipe(
+      delay(5000),
       tap((users) => {
         patchState({getUsers: users.data.getUsers});
       }),

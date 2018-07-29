@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetUsersQuery_getUsers } from '../../../../schema-types';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { GetUsersRequest } from '../../actions/users.actions';
+import { UsersState } from '../../states/users.state';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { GetUsersRequest } from '../../actions/users.actions';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  @Select(UsersState.users)
   users$: Observable<GetUsersQuery_getUsers[]>;
+
+  @Select(UsersState.usersLoading)
   loading$: Observable<boolean>;
 
   constructor(private readonly store: Store) {
-    this.loading$ = this.store.select(state => state.users.getUsersLoading);
-    this.users$ = this.store.select(state => state.users.getUsers);
   }
 
   ngOnInit() {

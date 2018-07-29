@@ -9,6 +9,7 @@ import { Store } from '@ngxs/store';
 })
 export class PageComponent {
   loading$: Observable<boolean>;
+  loadingUsers$: Observable<boolean>;
 
   constructor(private readonly store: Store) {
     this.loading$ = merge(
@@ -16,5 +17,7 @@ export class PageComponent {
       this.store.select(state => state.auth.registerLoading),
       this.store.select(state => state.users.getUsersLoading)
     );
+
+    this.loadingUsers$ = this.store.select(state => state.users.getUsersLoading);
   }
 }
