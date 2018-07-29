@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { LoginRequest } from '../../actions/auth.actions';
-import { merge, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { AuthState } from '../../states/auth.state';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,15 @@ import { merge, Observable } from 'rxjs';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  loading$: Observable<boolean>;
+  @Select(AuthState.loginLoading) loading$: Observable<boolean>;
 
+  loginForm: FormGroup;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly store: Store
   ) {
     this.createForm();
-    this.loading$ = this.store.select(state => state.auth.loginLoading);
   }
 
   createForm() {

@@ -50,11 +50,11 @@ export function createApollo(httpLink: HttpLink, store: Store, messageService: M
     cache: new InMemoryCache(),
     defaultOptions: {
       watchQuery: {
-        // fetchPolicy: 'network-only',
+        fetchPolicy: 'network-only',
         errorPolicy: 'none'
       },
       query: {
-        // fetchPolicy: 'network-only',
+        fetchPolicy: 'network-only',
         errorPolicy: 'none'
       },
       mutate: {

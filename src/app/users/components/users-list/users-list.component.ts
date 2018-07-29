@@ -12,11 +12,8 @@ import { UsersState } from '../../states/users.state';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  @Select(UsersState.users)
-  users$: Observable<GetUsersQuery_getUsers[]>;
-
-  @Select(UsersState.usersLoading)
-  loading$: Observable<boolean>;
+  @Select(UsersState.users) users$: Observable<GetUsersQuery_getUsers[]>;
+  @Select(UsersState.usersLoading) loading$: Observable<boolean>;
 
   constructor(private readonly store: Store) {
   }

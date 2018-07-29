@@ -1,8 +1,9 @@
-import { Action, Select, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { GetUsersFailure, GetUsersRequest, GetUsersSuccess } from '../actions/users.actions';
 import { GetUsersQuery_getUsers } from '../../../schema-types';
 import { UsersService } from '../services/users/users.service';
-import { catchError, delay, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
+import { StartLoading, StopLoading } from '../../core/state-mgnt/actions/app.actions';
 
 export interface UsersStateModel {
   getUsersLoading: boolean;
@@ -17,14 +18,14 @@ export interface UsersStateModel {
   }
 })
 export class UsersState {
-  @Select()
-  static users(state: { users: UsersStateModel }) {
-    return state.users.getUsers;
+  @Selector()
+  static users(state: UsersStateModel) {
+    return state.getUsers;
   }
 
-  @Select()
-  static usersLoading(state: { users: UsersStateModel }) {
-    return state.users.getUsersLoading;
+  @Selector()
+  static usersLoading(state: UsersStateModel) {
+    return state.getUsersLoading;
   }
 
   constructor(
@@ -35,9 +36,9 @@ export class UsersState {
   @Action(GetUsersRequest)
   getUsersRequest({patchState, dispatch}: StateContext<UsersStateModel>, action: GetUsersRequest) {
     patchState({getUsersLoading: true});
+    dispatch(new StartLoading('getUsers'));
 
     return this.usersService.getUsers().pipe(
-      delay(5000),
       tap((users) => {
         patchState({getUsers: users.data.getUsers});
       }),
@@ -49,10 +50,12 @@ export class UsersState {
   @Action(GetUsersSuccess)
   getUsersSuccess({patchState, dispatch}: StateContext<UsersStateModel>, action: GetUsersSuccess) {
     patchState({getUsersLoading: false});
+    dispatch(new StopLoading('getUsers'));
   }
 
   @Action(GetUsersFailure)
   getUsersFailure({patchState, dispatch}: StateContext<UsersStateModel>, action: GetUsersFailure) {
     patchState({getUsersLoading: false});
+    dispatch(new StopLoading('getUsers'));
   }
 }
