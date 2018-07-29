@@ -1,8 +1,7 @@
-{{loadingUsers$ | async | json}}
 <mz-progress
   backgroundClass="blue lighten-4"
   progressClass="blue"
-  [percentage]="(loading$ | async) ? null : 0">
+  [percentage]="loading ? null : 0">
 </mz-progress>
 
 <app-header></app-header>

@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Observable } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { RegisterRequest } from '../../actions/auth.actions';
+import { AuthState } from '../../states/auth.state';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,9 @@ import { RegisterRequest } from '../../actions/auth.actions';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  @Select(AuthState.registerLoading) loading$: Observable<boolean>;
+
   registerForm: FormGroup;
-  loading$: Observable<boolean>;
 
   constructor(
     private readonly authService: AuthService,
@@ -20,7 +22,6 @@ export class RegisterComponent {
     private readonly store: Store,
   ) {
     this.createForm();
-    this.loading$ = this.store.select(state => state.auth.registerLoading);
   }
 
   createForm() {
