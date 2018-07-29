@@ -5,11 +5,13 @@ import { NgxsStoragePluginModule, STORAGE_ENGINE } from '@ngxs/storage-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { UniversalCompatibleLocalStorageEngine } from './engines/universal-compatible-local-storage.engine';
+import { AppState } from './states/app.state';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxsModule.forRoot([]),
+    NgxsModule.forRoot([AppState]),
     NgxsStoragePluginModule.forRoot({key: ['auth']}),
     NgxsRouterPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),

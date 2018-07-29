@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  graphqlEndpoint: 'http://localhost:3000/graphql'
+  // graphqlEndpoint: 'http://localhost:3000/graphql'
+  graphqlEndpoint: 'https://rpng-backend.herokuapp.com/graphql'
 };
 
 /*
