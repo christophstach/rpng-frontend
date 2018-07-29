@@ -64,32 +64,6 @@ export interface Verify {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserList
-// ====================================================
-
-export interface UserList_getUsers {
-  id: string;
-  username: string;
-  email: string;
-  roles: (UserRole | null)[] | null;
-  firstName: string | null;
-  lastName: string | null;
-}
-
-export interface UserList {
-  /**
-   * Get a list of all users.
-   * 
-   * Roles: Admin, Superadmin
-   */
-  getUsers: (UserList_getUsers | null)[] | null;
-}
-
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: GetUsersQuery
 // ====================================================
 

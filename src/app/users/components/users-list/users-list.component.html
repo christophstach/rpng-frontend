@@ -2,7 +2,10 @@
   <mz-card-title>User List</mz-card-title>
   <mz-card-content>
     <ng-container *ngIf="loading$ | async">
-      <mz-spinner color="blue" size="big"></mz-spinner>
+      <div class="center-align">
+        <mz-spinner color="blue" size="big"></mz-spinner>
+      </div>
+
     </ng-container>
     <ng-container *ngIf="!(loading$ | async)">
       <table class="striped responsive-table">
