@@ -1,17 +1,15 @@
-<div class="page">
-  <mz-progress
-    backgroundClass="blue lighten-4"
-    progressClass="blue"
-    [percentage]="loading ? null : 0">
-  </mz-progress>
+<mz-progress
+  backgroundClass="blue lighten-4"
+  progressClass="blue"
+  [percentage]="loading ? null : 0">
+</mz-progress>
 
-  <app-header></app-header>
+<app-header></app-header>
 
-  <main>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </main>
+<main>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
 
-  <app-footer></app-footer>
-</div>
+<app-footer></app-footer>
