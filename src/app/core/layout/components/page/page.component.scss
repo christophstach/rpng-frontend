@@ -1,13 +1,12 @@
-.page {
+:host {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  
-  main {
-    flex-grow: 1
-  }
 }
 
+main {
+  flex-grow: 1
+}
 
 .progress {
   margin-top: 0 !important;
